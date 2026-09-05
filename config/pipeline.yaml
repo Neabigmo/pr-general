@@ -1,0 +1,18 @@
+dataset_name: PRI-General
+protein_length: [40, 2000]
+rna_length: [10, 500]
+binding_site_window_max_nt: 200
+protein_family_max_fraction: 0.05
+nominal_target_rows: 115000
+protein_caps:
+  at_most_500: 500
+  from_501_to_2000: 2000
+  from_2001_to_10000: 8000
+  above_10000: 10000
+final_complex_count: 101336
+experimental_pdb_complex_count: 1760
+prediction_candidate_count: 99576
+pre_boltz_queue_count: 92350
+d1_hard_qc_count: 150093
+d2_exact_dedup_count: 150093
+d3_local_rna_representative_count: 143414

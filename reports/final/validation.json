@@ -1,0 +1,78 @@
+{
+  "dataset": "PRI-General",
+  "root": "H:\\2026try\\8.15PR\\PRI-General_final",
+  "passed": true,
+  "checks": [
+    {
+      "check": "rows:data\\final\\complexes\\PRI-General_final_complexes.parquet",
+      "ok": true,
+      "observed": 101336,
+      "expected": 101336
+    },
+    {
+      "check": "rows:data\\final\\pre_boltz\\prediction_queue.parquet",
+      "ok": true,
+      "observed": 92350,
+      "expected": 92350
+    },
+    {
+      "check": "rows:data\\final\\pre_boltz\\general_d1_hard_qc.parquet",
+      "ok": true,
+      "observed": 150093,
+      "expected": 150093
+    },
+    {
+      "check": "rows:data\\final\\pre_boltz\\general_d2_exact_dedup.parquet",
+      "ok": true,
+      "observed": 150093,
+      "expected": 150093
+    },
+    {
+      "check": "rows:data\\final\\pre_boltz\\general_d3_local_rna_representatives.parquet",
+      "ok": true,
+      "observed": 143414,
+      "expected": 143414
+    },
+    {
+      "check": "audit_exists",
+      "ok": true,
+      "observed": "H:\\2026try\\8.15PR\\PRI-General_final\\data\\final\\audit\\general_stage_audit.csv"
+    },
+    {
+      "check": "complex_id_unique",
+      "ok": true,
+      "observed": 101336,
+      "expected": 101336
+    },
+    {
+      "check": "pdb_complex_count",
+      "ok": true,
+      "observed": 1760,
+      "expected": 1760
+    },
+    {
+      "check": "queue_sample_id_unique",
+      "ok": true,
+      "observed": 92350,
+      "expected": 92350
+    },
+    {
+      "check": "queue_sequence_hash_unique",
+      "ok": true,
+      "observed": 92350,
+      "expected": 92350
+    },
+    {
+      "check": "queue_hash_matches_sequence",
+      "ok": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "queue_length_and_benchmark_qc",
+      "ok": true,
+      "observed": 0,
+      "expected": 0
+    }
+  ]
+}

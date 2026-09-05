@@ -1,0 +1,13 @@
+﻿metric,value,definition
+final_rows,102600,最终 pre-Boltz 队列行数
+unique_proteins,2287,最终队列中的不同蛋白序列数
+unique_rnas,73272,最终队列中的不同 RNA 序列数
+unique_pairs,102600,蛋白序列与 RNA 序列联合 hash 的不同值数量
+hash_mismatch_rows,0,sequence_hash 与当前序列重算 hash 不一致的行数
+duplicate_sample_id_rows,0,最终队列重复 sample_id 行数
+benchmark_exact_pair_overlap_rows,0,与 benchmark 同时完全相同 protein+RNA pair 的行数
+benchmark_exact_protein_overlap_rows,0,与 benchmark 完全相同蛋白序列的行数
+benchmark_exact_rna_overlap_rows,0,与 benchmark 完全相同 RNA 序列的行数
+strict_sequence_pass_rows,102600,蛋白只含 20 种标准氨基酸且 RNA 只含 A/C/G/U
+main_length_pass_rows,102600,蛋白 40–2000 aa 且 RNA 10–500 nt
+rfam_annotated_rows,0,有 Rfam 注释的最终行数

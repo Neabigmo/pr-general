@@ -1,0 +1,13 @@
+{
+  "total_complexes": 101336,
+  "experimental_structure_complexes": 1760,
+  "prediction_candidate_complexes": 99576,
+  "source_counts": {
+    "NPInter_v5_bindingsite": 67185,
+    "NPInter_v5": 32079,
+    "RCSB_PDB": 1760,
+    "NPInter_v5_miRNA": 312
+  },
+  "statistical_unit": "PDB unique pdb_id; non-PDB unique sequence_hash",
+  "input_audit": "H:\\2026try\\8.15PR\\PRI-General_final\\data\\final\\audit\\general_stage_audit.csv"
+}

@@ -1,0 +1,19 @@
+{
+  "final_complex_count": 101336,
+  "unique_proteins": 2287,
+  "unique_rnas": 73272,
+  "source_counts": {
+    "NPInter 主表": 32079,
+    "NPInter binding-site": 67185,
+    "NPInter miRNA": 312,
+    "RCSB PDB": 1760
+  },
+  "protein_frequency": {
+    "top1": 5750,
+    "top10": 36527
+  },
+  "rna_frequency": {
+    "top1": 189,
+    "top10": 1258
+  }
+}

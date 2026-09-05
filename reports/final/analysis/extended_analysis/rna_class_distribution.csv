@@ -1,0 +1,5 @@
+﻿source,category,complex_count,fraction_within_source
+NPInter 主表,lncrna,32079,1.0
+NPInter binding-site,lncrna,67185,1.0
+NPInter miRNA,mirna,312,1.0
+RCSB PDB,other_ncrna,1760,1.0

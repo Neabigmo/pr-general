@@ -1,0 +1,2 @@
+/data/source_candidates/npinter_raw.parquet filter=lfs diff=lfs merge=lfs -text
+/data/final/complexes/PRI-General_final_complexes.csv filter=lfs diff=lfs merge=lfs -text

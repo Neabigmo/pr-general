@@ -1,0 +1,10 @@
+﻿metric,value,unit,note
+final_complex_count,101336.0,complexes,最终复合物总数
+unique_proteins_in_complexes,2287.0,proteins,最终复合物中出现的不同蛋白
+unique_rnas_in_complexes,73272.0,RNAs,最终复合物中出现的不同 RNA
+protein_top1_complex_fraction,0.05674192784400411,fraction,出现频次最高的蛋白占最终复合物比例
+protein_top10_complex_fraction,0.3604543301492066,fraction,前十个高频蛋白合计占最终复合物比例
+source_complex_count::NPInter 主表,32079.0,complexes,NPInter 主表 最终复合物数
+source_complex_count::NPInter binding-site,67185.0,complexes,NPInter binding-site 最终复合物数
+source_complex_count::NPInter miRNA,312.0,complexes,NPInter miRNA 最终复合物数
+source_complex_count::RCSB PDB,1760.0,complexes,RCSB PDB 最终复合物数

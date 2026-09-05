@@ -1,0 +1,22 @@
+{
+  "generated_at_utc": "2026-09-05T03:34:46.417656+00:00",
+  "input": "H:\\2026try\\8.15PR\\PRI-General_final\\data\\final\\audit\\general_stage_audit.csv",
+  "statistical_unit": {
+    "RCSB_PDB": "unique pdb_id",
+    "other_sources": "unique sequence_hash",
+    "protein_frequency": "number of final complexes containing the protein once or more",
+    "length_distribution": "unique protein/RNA component sequences within final complexes"
+  },
+  "final_complex_count": 101336,
+  "source_resolved_complex_count": 461295,
+  "complex_count_by_source": {
+    "NPInter 主表": 32079,
+    "NPInter binding-site": 67185,
+    "NPInter miRNA": 312,
+    "RCSB PDB": 1760
+  },
+  "unique_proteins_in_complexes": 2287,
+  "unique_rnas_in_complexes": 73272,
+  "protein_top1_complex_fraction": 0.05674192784400411,
+  "protein_top10_complex_fraction": 0.3604543301492066
+}

@@ -1,0 +1,107 @@
+{
+  "dataset_scope": "single_PRI-General_table",
+  "statistical_unit": "complex structure or complex structure candidate",
+  "experimental_complex_structures": 1760,
+  "complexes_requiring_prediction": 99576,
+  "total_structure_units": 101336,
+  "new_length_rules": {
+    "protein_aa": [
+      40,
+      2000
+    ],
+    "rna_nt": [
+      10,
+      500
+    ]
+  },
+  "protein_length_summary": {
+    "count": 102600.0,
+    "mean": 650.9096003898635,
+    "std": 333.90562900177514,
+    "min": 50.0,
+    "10%": 321.0,
+    "25%": 386.0,
+    "50%": 557.0,
+    "75%": 859.0,
+    "90%": 1129.0,
+    "95%": 1336.0,
+    "max": 1981.0
+  },
+  "rna_length_summary": {
+    "count": 102600.0,
+    "mean": 151.1556530214425,
+    "std": 164.03786162114153,
+    "min": 10.0,
+    "10%": 21.0,
+    "25%": 31.0,
+    "50%": 52.0,
+    "75%": 306.0,
+    "90%": 434.0,
+    "95%": 465.0,
+    "max": 500.0
+  },
+  "source_inventory": [
+    {
+      "source_database": "RCSB_PDB",
+      "complexes_requiring_prediction": 0,
+      "experimental_complex_structures": 1760
+    },
+    {
+      "source_database": "NPInter_v5_bindingsite",
+      "complexes_requiring_prediction": 67185,
+      "experimental_complex_structures": 0
+    },
+    {
+      "source_database": "NPInter_v5",
+      "complexes_requiring_prediction": 32079,
+      "experimental_complex_structures": 0
+    },
+    {
+      "source_database": "NPInter_v5_miRNA",
+      "complexes_requiring_prediction": 312,
+      "experimental_complex_structures": 0
+    }
+  ],
+  "resolution_audit": [
+    {
+      "candidate_file": "mirna_protein_raw.parquet",
+      "source_rows": 316,
+      "missing_protein_rows": 3,
+      "missing_rna_rows": 0,
+      "missing_both_rows": 0,
+      "protein_recoverable_from_local_cache": 0,
+      "rna_recoverable_from_local_cache": 0,
+      "unique_experimental_structures": 0
+    },
+    {
+      "candidate_file": "npinter_bindingsite_raw.parquet",
+      "source_rows": 197052,
+      "missing_protein_rows": 304,
+      "missing_rna_rows": 0,
+      "missing_both_rows": 0,
+      "protein_recoverable_from_local_cache": 0,
+      "rna_recoverable_from_local_cache": 0,
+      "unique_experimental_structures": 0
+    },
+    {
+      "candidate_file": "npinter_raw.parquet",
+      "source_rows": 564646,
+      "missing_protein_rows": 7610,
+      "missing_rna_rows": 226061,
+      "missing_both_rows": 3403,
+      "protein_recoverable_from_local_cache": 0,
+      "rna_recoverable_from_local_cache": 0,
+      "unique_experimental_structures": 0
+    },
+    {
+      "candidate_file": "pdb_raw.parquet",
+      "source_rows": 41759,
+      "missing_protein_rows": 0,
+      "missing_rna_rows": 0,
+      "missing_both_rows": 0,
+      "protein_recoverable_from_local_cache": 0,
+      "rna_recoverable_from_local_cache": 0,
+      "unique_experimental_structures": 4993
+    }
+  ]
+}

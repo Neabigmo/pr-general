@@ -1,0 +1,9 @@
+﻿source,category,complex_count,fraction_within_source
+NPInter 主表,Homo sapiens,30009,0.9354718039839147
+NPInter 主表,Mus musculus,2070,0.0645281960160853
+NPInter binding-site,Homo sapiens,54097,0.8051946118925355
+NPInter binding-site,Mus musculus,13088,0.19480538810746445
+NPInter miRNA,Homo sapiens,306,0.9807692307692307
+NPInter miRNA,Oryza sativa,4,0.01282051282051282
+NPInter miRNA,Mus musculus,2,0.00641025641025641
+RCSB PDB,未标注,1760,1.0

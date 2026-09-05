@@ -1,0 +1,18 @@
+# Python and local environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.env
+
+# Temporary pipeline files
+*.part
+data/downloads/
+data/final/rebuild/
+reports/final/rebuild/
+scripts/**/mmseqs_work/
+
+# The current audit CSV is over the repository upload ceiling.
+# Keep data/final/audit/README.md tracked as its placeholder.
+data/final/audit/general_stage_audit.csv
