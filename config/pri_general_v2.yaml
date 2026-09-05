@@ -1,0 +1,50 @@
+schema_version: pri-general/v2
+release: v2.0.0
+
+scope:
+  training_mother_samples: 100000
+  protein_length_min: 40
+  protein_length_max: 2000
+  rna_length_min: 10
+  rna_length_max: 500
+  site_window_target: 96
+  site_window_hard_max: 160
+  token_preferred_max: 1200
+  token_hard_max: 1700
+  expensive_fraction_max: 0.10
+
+evidence:
+  training_excludes:
+    - computational_prediction
+  validation_test_only: experimental_structure
+
+structure:
+  interface_distance_angstrom: 5.0
+  min_contact_pairs: 6
+  min_contact_protein_residues: 3
+  min_contact_rna_nucleotides: 3
+  gold_resolution_max_angstrom: 3.5
+  silver_resolution_max_angstrom: 4.0
+
+splits:
+  validation_fraction: 0.10
+  test_fraction: 0.10
+  require_bilateral_family_holdout: true
+
+caps:
+  protein_exact: 250
+  protein30: 1500
+  rna_exact: 100
+  rfam: 2000
+  source: 30000
+  site_window: 35000
+  species: 55000
+  human_mouse: 75000
+  rna_class: 30000
+  unknown: 10000
+  expensive: 10000
+
+paths:
+  source_manifest: data/manifests/sources.yaml
+  build_cache: data/cache/build
+  release_root: releases

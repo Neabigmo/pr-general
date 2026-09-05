@@ -1,5 +1,0 @@
-﻿source_id,source_database,input_file,rows_read,source_filter_pass_rows,source_filter_fail_rows,resolved_pair_rows_retained,unresolved_sequence_rows,nonempty_protein_rows,nonempty_rna_rows,unique_sequence_hash_rows
-npinter_main,NPInter_v5,data\raw_candidates\npinter_raw.parquet,564646,564646,0,334378,230268,334378,334378,324734
-npinter_bindingsite,NPInter_v5_bindingsite,data\raw_candidates\npinter_bindingsite_raw.parquet,197052,197052,0,196748,304,196748,196748,131255
-mirna_protein,NPInter_v5_miRNA,data\raw_candidates\mirna_protein_raw.parquet,316,316,0,313,3,313,313,313
-rcsb_pdb,RCSB_PDB,data\raw_candidates\pdb_raw.parquet,41759,41759,0,41759,0,41759,41759,12239

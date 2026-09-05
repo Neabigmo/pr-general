@@ -6,13 +6,16 @@ venv/
 env/
 .env
 
+# Local raw sources and generated build cache never enter the repository.
+data/cache/sources/
+data/cache/build/
+data/cache/**/*.part
+
 # Temporary pipeline files
 *.part
 data/downloads/
-data/final/rebuild/
-reports/final/rebuild/
-scripts/**/mmseqs_work/
+**/mmseqs_work/
 
-# The current audit CSV is over the repository upload ceiling.
-# Keep data/final/audit/README.md tracked as its placeholder.
-data/final/audit/general_stage_audit.csv
+# Release outputs are tracked only when they are small metadata/templates.
+releases/**/forms/*.jsonl
+releases/**/submission/predictions.*

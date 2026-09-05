@@ -1,9 +1,0 @@
-﻿metric,raw_build_value,release_reference_value,status
-raw_source_candidate_rows,573198,150093.0,已验证/参考对照
-raw_source_pass_rows,573198,,已验证
-raw_source_strict_main_rows,221490,,已验证
-raw_source_unique_pairs,468541,150093.0,已验证/参考对照
-reconstructed_final_rows,102600,,已由当前源数据和规则重新构建；不使用历史队列数量作目标
-reconstructed_final_pairs_in_release_general,92345,102600.0,已验证
-release_general_pairs_found_in_raw_source_pool,150093,150093.0,已验证
-release_general_pairs_not_found_in_raw_source_pool,0,0.0,若非 0，说明源快照与 release 快照不完全相同

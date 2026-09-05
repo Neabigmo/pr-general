@@ -1,0 +1,18 @@
+{
+  "candidate_rows": 239127,
+  "evidence_types": {
+    "direct_biochemical": 316,
+    "experimental_structure": 41759,
+    "site_resolved_binding": 197052
+  },
+  "family_ready_rows": 0,
+  "interface_qualified_rows": 0,
+  "skipped_sources": {
+    "npinter_main": "requires_sequence_resolution"
+  },
+  "source_rows": {
+    "npinter_bindingsite": 197052,
+    "npinter_mirna": 316,
+    "rcsb_pdb_candidates": 41759
+  }
+}

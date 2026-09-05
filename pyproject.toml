@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pri-general"
-version = "1.0.0"
-description = "Standalone current PRI-General dataset workspace"
+version = "2.0.0"
+description = "PRI-General v2 protein-RNA dataset pipeline"
 requires-python = ">=3.10"
 dependencies = [
   "pandas>=2.0",
@@ -15,3 +15,12 @@ dependencies = [
   "PyYAML>=6.0",
   "biopython>=1.85",
 ]
+
+[project.scripts]
+pri-general = "pri_general.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
