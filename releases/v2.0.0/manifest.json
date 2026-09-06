@@ -5,10 +5,7 @@
     "external_boltz_results_required_before_final_release",
     "family_assignments_required_before_selection",
     "source_npinter_main_requires_sequence_resolution",
-    "source_postar3_status_endpoint_unverified",
-    "source_rnacentral_current_id_mapping_status_pending_large_download",
-    "source_rnacentral_current_rfam_status_pending_large_download",
-    "source_rnapedia_status_pending_large_download"
+    "source_postar3_status_endpoint_unverified"
   ],
   "candidate_path": "data/cache/build/candidates.jsonl",
   "release": "v2.0.0",

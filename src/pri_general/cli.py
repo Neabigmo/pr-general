@@ -30,7 +30,7 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(build(root, args.config, args.release), ensure_ascii=False, indent=2))
         return 0
     manifest = load_source_manifest(root / config["paths"]["source_manifest"])
-    issues = validate_source_manifest(manifest, root, strict=args.strict)
+    issues = validate_source_manifest(manifest, root, strict=getattr(args, "strict", False))
     if args.command == "validate":
         release_manifest = root / config["paths"]["release_root"] / args.release / "manifest.json"
         release_data = None

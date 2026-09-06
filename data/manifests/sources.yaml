@@ -75,22 +75,22 @@ sources:
     note: JSON/cmscan archives downloaded; the 2.1 GB mmCIF asset is redundant with local experimental structures.
   - id: rnacentral_current_id_mapping
     role: rna_annotation
-    status: pending_large_download
-    local_path: data/cache/sources/rnacentral/current_release/id_mapping.tsv.gz
+    status: available
+    local_path: data/cache/sources/rnacentral/current_release/id_mapping/id_mapping.tsv.gz
     source_url: https://ftp.ebi.ac.uk/pub/databases/RNAcentral/current_release/id_mapping/id_mapping.tsv.gz
-    note: About 2.5 GB compressed; requires user confirmation before download.
+    note: RNAcentral current-release snapshot; 2660438847 bytes compressed and gzip integrity verified locally.
   - id: rnacentral_current_rfam
     role: rna_family_annotation
-    status: pending_large_download
-    local_path: data/cache/sources/rnacentral/current_release/rfam_annotations.tsv.gz
+    status: available
+    local_path: data/cache/sources/rnacentral/current_release/rfam/rfam_annotations.tsv.gz
     source_url: https://ftp.ebi.ac.uk/pub/databases/RNAcentral/current_release/rfam/rfam_annotations.tsv.gz
-    note: About 391 MB compressed; requires user confirmation before download.
+    note: RNAcentral current-release Rfam snapshot; 409956960 bytes compressed and gzip integrity verified locally.
   - id: rnapedia
     role: external_benchmark
-    status: pending_large_download
-    local_path: data/cache/sources/rnapedia
-    source_url: https://bioinfo.dcc.ufmg.br/rnapedia3/public/download
-    note: Complete package is about 35.5 GB; local PDB structures already cover the core structural need.
+    status: available
+    local_path: data/cache/sources/rnapedia/RNApedia.zip
+    source_url: https://zenodo.org/records/20073649
+    note: Official Zenodo RNApedia.zip snapshot; 35465394350 bytes, ZIP CRC and source checksum verified locally. Local-only because it exceeds the 1 GB upload limit.
   - id: postar3
     role: interaction_source
     status: endpoint_unverified

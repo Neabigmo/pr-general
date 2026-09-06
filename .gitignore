@@ -9,6 +9,7 @@ env/
 # Local raw sources and generated build cache never enter the repository.
 data/cache/sources/
 data/cache/build/
+data/cache/tools/
 data/cache/**/*.part
 
 # Temporary pipeline files
