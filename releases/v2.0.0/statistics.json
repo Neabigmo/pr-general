@@ -1,18 +1,174 @@
 {
-  "candidate_rows": 239127,
+  "candidate_rows": 139012,
+  "duplicate_rows_removed": 46012,
   "evidence_types": {
-    "direct_biochemical": 316,
-    "experimental_structure": 41759,
-    "site_resolved_binding": 197052
+    "direct_biochemical": 312,
+    "experimental_structure": 19317,
+    "site_resolved_binding": 119383
   },
-  "family_ready_rows": 0,
-  "interface_qualified_rows": 0,
+  "family_assignments": {
+    "assignment_files_present": 6,
+    "family_ready_rows": 6597,
+    "protein30_assignments": 5090,
+    "protein40_assignments": 5090,
+    "protein90_assignments": 5090,
+    "rfam_assignments": 220,
+    "rna80_assignments": 127609,
+    "rna90_assignments": 127609
+  },
+  "family_ready_rows": 6597,
+  "interface_qualified_rows": 4885,
+  "rejected_rows": 54103,
+  "rejection_reasons": {
+    "invalid_rna_alphabet": 21,
+    "protein_length": 1539,
+    "rna_length": 52163,
+    "site_window_too_long": 281,
+    "token_hard_max": 11981
+  },
+  "rejection_sources": {
+    "npinter_bindingsite": 31657,
+    "npinter_mirna": 4,
+    "rcsb_pdb_candidates": 22442
+  },
+  "selection": {
+    "error": "training target unavailable: requested 100000, selected 3544",
+    "selected": 3544
+  },
   "skipped_sources": {
-    "npinter_main": "requires_sequence_resolution"
+    "boltz2": "external_execution",
+    "encode_rbns": "metadata_only_raw_binding_table_pending",
+    "intact": "provenance_only_sequence_resolution_pending",
+    "npinter_main": "requires_sequence_resolution",
+    "postar3": "provenance_only_endpoint_unverified",
+    "prdbv3": "benchmark_excluded_from_training",
+    "rcsb_pdb_experimental_structures": "structure_qc_input",
+    "rfam_legacy": "annotation_reference",
+    "rna3db_metadata": "annotation_audit_excluded_from_training",
+    "rnacentral_current_id_mapping": "annotation_reference",
+    "rnacentral_current_rfam": "annotation_reference",
+    "rnacentral_legacy": "annotation_reference_legacy_subset",
+    "rnainter": "provenance_only_sequence_resolution_pending",
+    "rnapedia": "benchmark_excluded_from_training_local_only",
+    "uniprot_legacy": "annotation_reference"
+  },
+  "source_inventory": {
+    "boltz2": {
+      "disposition": "external_execution",
+      "local_path": null,
+      "role": "external_structure_prediction",
+      "status": "external_host_out_of_scope"
+    },
+    "encode_rbns": {
+      "disposition": "metadata_only_raw_binding_table_pending",
+      "local_path": "data/cache/sources/encode_rbns",
+      "role": "direct_biochemical",
+      "status": "available"
+    },
+    "intact": {
+      "disposition": "provenance_only_sequence_resolution_pending",
+      "local_path": "data/cache/sources/intact",
+      "role": "physical_association",
+      "status": "available"
+    },
+    "npinter_bindingsite": {
+      "disposition": "canonical_candidate_input",
+      "local_path": "data/cache/sources/npinter_v5/npinter_bindingsite_raw.parquet",
+      "role": "site_resolved_binding",
+      "status": "available"
+    },
+    "npinter_main": {
+      "disposition": "provenance_only_sequence_resolution_pending",
+      "local_path": "data/cache/sources/npinter_v5/interaction_NPInterv5.zip",
+      "role": "interaction_source",
+      "status": "available"
+    },
+    "npinter_mirna": {
+      "disposition": "canonical_candidate_input",
+      "local_path": "data/cache/sources/npinter_v5/mirna_protein_raw.parquet",
+      "role": "site_resolved_binding",
+      "status": "available"
+    },
+    "postar3": {
+      "disposition": "provenance_only_endpoint_unverified",
+      "local_path": "data/cache/sources/postar3",
+      "role": "interaction_source",
+      "status": "endpoint_unverified"
+    },
+    "prdbv3": {
+      "disposition": "benchmark_excluded_from_training",
+      "local_path": "data/cache/sources/prdbv3/nr_288_PRDBv3.0.zip",
+      "role": "external_benchmark",
+      "status": "available"
+    },
+    "rcsb_pdb_candidates": {
+      "disposition": "canonical_candidate_input",
+      "local_path": "data/cache/sources/rcsb_pdb/pdb_raw.parquet",
+      "role": "experimental_structure_candidates",
+      "status": "available"
+    },
+    "rcsb_pdb_experimental_structures": {
+      "disposition": "structure_qc_input",
+      "local_path": "data/cache/sources/rcsb_pdb/experimental_structures",
+      "role": "experimental_structure",
+      "status": "available"
+    },
+    "rfam_legacy": {
+      "disposition": "annotation_reference",
+      "local_path": "data/cache/sources/rfam",
+      "role": "rna_family_annotation",
+      "status": "available"
+    },
+    "rna3db_metadata": {
+      "disposition": "annotation_audit_excluded_from_training",
+      "local_path": "data/cache/sources/rna3db",
+      "role": "rna_structure_annotation",
+      "status": "available"
+    },
+    "rnacentral_current_id_mapping": {
+      "disposition": "annotation_reference",
+      "local_path": "data/cache/sources/rnacentral/current_release/id_mapping/id_mapping.tsv.gz",
+      "role": "rna_annotation",
+      "status": "available"
+    },
+    "rnacentral_current_rfam": {
+      "disposition": "annotation_reference",
+      "local_path": "data/cache/sources/rnacentral/current_release/rfam/rfam_annotations.tsv.gz",
+      "role": "rna_family_annotation",
+      "status": "available"
+    },
+    "rnacentral_legacy": {
+      "disposition": "annotation_reference_legacy_subset",
+      "local_path": "data/cache/sources/rnacentral",
+      "role": "rna_annotation",
+      "status": "available"
+    },
+    "rnainter": {
+      "disposition": "provenance_only_sequence_resolution_pending",
+      "local_path": "data/cache/sources/rnainter",
+      "role": "physical_association",
+      "status": "available"
+    },
+    "rnapedia": {
+      "disposition": "benchmark_excluded_from_training_local_only",
+      "local_path": "data/cache/sources/rnapedia/RNApedia.zip",
+      "role": "external_benchmark",
+      "status": "available"
+    },
+    "uniprot_legacy": {
+      "disposition": "annotation_reference",
+      "local_path": "data/cache/sources/uniprot",
+      "role": "protein_annotation",
+      "status": "available"
+    }
   },
   "source_rows": {
     "npinter_bindingsite": 197052,
     "npinter_mirna": 316,
     "rcsb_pdb_candidates": 41759
-  }
+  },
+  "strict_holdout_source_rows": 0,
+  "structure_qc_rows_applied": 41759,
+  "test_candidates": 0,
+  "validation_candidates": 0
 }

@@ -6,6 +6,12 @@ from .constructs import estimate_tokens
 from .evidence import evidence_is_training_eligible, evidence_priority, evidence_support
 
 
+class SelectionError(ValueError):
+    def __init__(self, message: str, selected: list[dict]) -> None:
+        super().__init__(message)
+        self.selected = selected
+
+
 def _quality_key(record: dict) -> tuple:
     return (
         -evidence_priority(str(record.get("evidence_type") or "")),
@@ -31,7 +37,7 @@ def select_records(records: list[dict], target: int, caps: dict) -> tuple[list[d
         if len(selected) == target:
             break
     if len(selected) != target:
-        raise ValueError(f"training target unavailable: requested {target}, selected {len(selected)}")
+        raise SelectionError(f"training target unavailable: requested {target}, selected {len(selected)}", selected)
     return selected, {"selected": len(selected), "cap_keys": len(counters)}
 
 

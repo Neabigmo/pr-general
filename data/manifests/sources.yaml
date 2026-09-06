@@ -9,97 +9,115 @@ sources:
     status: available
     local_path: data/cache/sources/npinter_v5/interaction_NPInterv5.zip
     source_url: http://bigdata.ibp.ac.cn/npinter5
-    note: Official v5 download. It is a ZIP container with interaction_NPInterv5.txt; sequence resolution is still required for many rows.
+    disposition: provenance_only_sequence_resolution_pending
+    note: Official v5 download. It is a ZIP container with interaction_NPInterv5.txt; sequence resolution is still required before candidate import.
   - id: npinter_bindingsite
     role: site_resolved_binding
     status: available
     local_path: data/cache/sources/npinter_v5/npinter_bindingsite_raw.parquet
     source_url: http://bigdata.ibp.ac.cn/npinter5
+    disposition: canonical_candidate_input
   - id: npinter_mirna
     role: site_resolved_binding
     status: available
     local_path: data/cache/sources/npinter_v5/mirna_protein_raw.parquet
     source_url: http://bigdata.ibp.ac.cn/npinter5
+    disposition: canonical_candidate_input
   - id: rcsb_pdb_candidates
     role: experimental_structure_candidates
     status: available
     local_path: data/cache/sources/rcsb_pdb/pdb_raw.parquet
     source_url: https://www.rcsb.org/
+    disposition: canonical_candidate_input
   - id: rcsb_pdb_experimental_structures
     role: experimental_structure
     status: available
     local_path: data/cache/sources/rcsb_pdb/experimental_structures
     source_url: https://www.rcsb.org/
+    disposition: structure_qc_input
     note: Includes 5,209 raw CIFs and derived pair metadata. Pair/interface QC still requires explicit atom metrics.
   - id: rnainter
     role: physical_association
     status: available
     local_path: data/cache/sources/rnainter
     source_url: https://rnainter.org/
+    disposition: provenance_only_sequence_resolution_pending
   - id: intact
     role: physical_association
     status: available
     local_path: data/cache/sources/intact
     source_url: https://www.ebi.ac.uk/intact/
+    disposition: provenance_only_sequence_resolution_pending
   - id: encode_rbns
     role: direct_biochemical
     status: available
     local_path: data/cache/sources/encode_rbns
     source_url: https://www.encodeproject.org/
+    disposition: metadata_only_raw_binding_table_pending
   - id: rfam_legacy
     role: rna_family_annotation
     status: available
     local_path: data/cache/sources/rfam
     source_url: https://rfam.org/
+    disposition: annotation_reference
   - id: uniprot_legacy
     role: protein_annotation
     status: available
     local_path: data/cache/sources/uniprot
     source_url: https://www.uniprot.org/
+    disposition: annotation_reference
   - id: rnacentral_legacy
     role: rna_annotation
     status: available
     local_path: data/cache/sources/rnacentral
     source_url: https://www.rnacentral.org/
-    note: Legacy subset only; current-release mapping remains a large pending download.
+    disposition: annotation_reference_legacy_subset
+    note: Legacy subset retained; current-release mapping and Rfam annotation are recorded separately and available locally.
   - id: prdbv3
     role: external_benchmark
     status: available
     local_path: data/cache/sources/prdbv3/nr_288_PRDBv3.0.zip
     source_url: https://github.com/shrikantcombio/PRDBv3_dataset
+    disposition: benchmark_excluded_from_training
   - id: rna3db_metadata
     role: rna_structure_annotation
     status: available
     local_path: data/cache/sources/rna3db
     source_url: https://github.com/marcellszi/rna3db/releases/tag/2026-01-05-full-release
+    disposition: annotation_audit_excluded_from_training
     note: JSON/cmscan archives downloaded; the 2.1 GB mmCIF asset is redundant with local experimental structures.
   - id: rnacentral_current_id_mapping
     role: rna_annotation
     status: available
     local_path: data/cache/sources/rnacentral/current_release/id_mapping/id_mapping.tsv.gz
     source_url: https://ftp.ebi.ac.uk/pub/databases/RNAcentral/current_release/id_mapping/id_mapping.tsv.gz
+    disposition: annotation_reference
     note: RNAcentral current-release snapshot; 2660438847 bytes compressed and gzip integrity verified locally.
   - id: rnacentral_current_rfam
     role: rna_family_annotation
     status: available
     local_path: data/cache/sources/rnacentral/current_release/rfam/rfam_annotations.tsv.gz
     source_url: https://ftp.ebi.ac.uk/pub/databases/RNAcentral/current_release/rfam/rfam_annotations.tsv.gz
+    disposition: annotation_reference
     note: RNAcentral current-release Rfam snapshot; 409956960 bytes compressed and gzip integrity verified locally.
   - id: rnapedia
     role: external_benchmark
     status: available
     local_path: data/cache/sources/rnapedia/RNApedia.zip
     source_url: https://zenodo.org/records/20073649
+    disposition: benchmark_excluded_from_training_local_only
     note: Official Zenodo RNApedia.zip snapshot; 35465394350 bytes, ZIP CRC and source checksum verified locally. Local-only because it exceeds the 1 GB upload limit.
   - id: postar3
     role: interaction_source
     status: endpoint_unverified
     local_path: data/cache/sources/postar3
     source_url: http://postar.ncrnalab.org
+    disposition: provenance_only_endpoint_unverified
     note: No stable machine-readable public dump was confirmed during this pass; do not fabricate an import.
   - id: boltz2
     role: external_structure_prediction
     status: external_host_out_of_scope
     local_path: null
     source_url: null
+    disposition: external_execution
     note: Boltz-2 and MSA preparation are configured on the school host and are intentionally excluded from this rebuild.

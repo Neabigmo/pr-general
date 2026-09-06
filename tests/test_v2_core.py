@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 import sys
-import unittest
+import tempfile
 from pathlib import Path
+import unittest
 
 sys.path.insert(0, str(Path(__file__).parents[1] / "src"))
 
@@ -11,6 +12,8 @@ from pri_general.constructs import centered_window
 from pri_general.evidence import infer_evidence_type
 from pri_general.interface import qualify_interface
 from pri_general.normalize import normalize_record
+from pri_general.pipeline import _candidate_rejection_reasons
+from pri_general.families import annotate_family_records
 from pri_general.split import assign_splits, validate_split_isolation
 from pri_general.validate import validate_records
 
@@ -74,6 +77,61 @@ class V2CoreTests(unittest.TestCase):
         record["split"] = "train"
         result = validate_records([record], config, strict=True)
         self.assertEqual(result["rows"], 1)
+
+    def test_site_windows_have_distinct_sample_ids(self) -> None:
+        common = {
+            "protein_sequence": "ACDE",
+            "rna_sequence": "ACGU",
+            "protein_accession": "P1",
+            "rna_accession": "R1",
+            "source_record_id": "x1",
+            "binding_site_start": 10,
+            "source_database": "fixture",
+            "interaction_evidence": "site binding window",
+        }
+        first = normalize_record({**common, "binding_site_end": 20}, "fixture")
+        second = normalize_record({**common, "binding_site_end": 21}, "fixture")
+        self.assertNotEqual(first["sample_id"], second["sample_id"])
+
+    def test_invalid_candidate_is_rejected_before_release(self) -> None:
+        record = {"construct_errors": [], "protein_sequence": "ACDE", "rna_sequence": "IIII"}
+        self.assertEqual(_candidate_rejection_reasons(record), ["invalid_rna_alphabet"])
+
+    def test_structure_notes_are_parsed_without_inventing_interface_qc(self) -> None:
+        record = normalize_record({
+            "protein_sequence": "ACDE", "rna_sequence": "ACGU",
+            "protein_accession": "1ABC:E", "rna_accession": "1ABC:A",
+            "source_record_id": "x1", "pdb_id": "1ABC",
+            "experimental_structure_available": True,
+            "interaction_evidence": "E3:PDB experimental complex, 12 contact atom pairs <=5A",
+            "notes": "protein_chain=E; rna_chain=A; resolution=[2.38]; method=X",
+        }, "fixture")
+        self.assertEqual(record["protein_chain"], "E")
+        self.assertEqual(record["rna_chain"], "A")
+        self.assertEqual(record["interface_contacts"], 12)
+        self.assertEqual(record["experimental_method"], "x-ray")
+        self.assertIsNone(record["backbone_atom_complete"])
+
+    def test_family_annotation_uses_local_assignments(self) -> None:
+        record = normalize_record({
+            "protein_sequence": "ACDE", "rna_sequence": "ACGU",
+            "protein_accession": "P1", "rna_accession": "RNA1.1",
+            "source_record_id": "x1", "source_database": "fixture",
+            "interaction_evidence": "direct biochemical binding",
+        }, "fixture")
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            pkey, rkey = record["sequence_key"].split("_r_", 1)
+            (root / "protein90_cluster.tsv").write_text(f"{pkey}\t{pkey}\n", encoding="utf-8")
+            for field in ("protein40", "protein30"):
+                (root / f"{field}_cluster.tsv").write_text(f"{pkey}\t{pkey}\n", encoding="utf-8")
+            for field in ("rna90", "rna80"):
+                (root / f"{field}_cluster.tsv").write_text(f"r_{rkey}\tr_{rkey}\n", encoding="utf-8")
+            (root / "rna_rfam_by_id.tsv").write_text("RNA1\tRF00001\n", encoding="utf-8")
+            stats = annotate_family_records([record], root)
+        self.assertTrue(record["family_ready"])
+        self.assertEqual(record["rfam_family"], "RF00001")
+        self.assertEqual(stats["family_ready_rows"], 1)
 
 
 if __name__ == "__main__":
