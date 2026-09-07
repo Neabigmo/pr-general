@@ -14,7 +14,7 @@ from .ingest import load_records
 from .interface import quality_tier, qualify_interface
 from .io import write_json, write_jsonl
 from .release import write_checksums
-from .select import SelectionError, select_records
+from .select import SelectionError, collapse_mother_samples, select_records
 from .split import assign_splits, holdout_family_keys
 from .structure_qc import apply_structure_qc
 from .validate import validate_source_manifest
@@ -140,6 +140,10 @@ def build(repo_root: str | Path, config_path: str | Path, release: str) -> dict:
         if source_id not in BUILD_SOURCE_IDS
     })
     family_stats = annotate_family_records(rows, cache_root / "family_work")
+    rows, mother_samples_collapsed = collapse_mother_samples(rows)
+    # Recount after representative selection so release statistics describe the
+    # canonical mother-sample pool rather than repeated evidence rows.
+    family_stats = annotate_family_records(rows, cache_root / "family_work")
     candidate_path = cache_root / "candidates.jsonl"
     holdout_source = [
         row for row in rows
@@ -210,6 +214,7 @@ def build(repo_root: str | Path, config_path: str | Path, release: str) -> dict:
     stats = {
         "candidate_rows": candidate_count,
         "duplicate_rows_removed": duplicate_rows_removed,
+        "mother_samples_collapsed": mother_samples_collapsed,
         "rejected_rows": len(rejected_rows),
         "rejection_reasons": dict(rejection_reasons),
         "rejection_sources": dict(rejection_sources),

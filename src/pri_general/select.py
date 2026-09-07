@@ -41,6 +41,18 @@ def select_records(records: list[dict], target: int, caps: dict) -> tuple[list[d
     return selected, {"selected": len(selected), "cap_keys": len(counters)}
 
 
+def collapse_mother_samples(records: list[dict]) -> tuple[list[dict], int]:
+    """Keep one evidence-prioritized representative per exact sequence pair."""
+    representatives: dict[str, dict] = {}
+    for index, record in enumerate(records):
+        key = str(record.get("sequence_key") or f"record:{index}")
+        previous = representatives.get(key)
+        if previous is None or _quality_key(record) < _quality_key(previous):
+            representatives[key] = record
+    collapsed = len(records) - len(representatives)
+    return list(representatives.values()), collapsed
+
+
 def _cap_keys(record: dict) -> list[tuple[str, str]]:
     keys = [
         ("protein_exact", str(record.get("protein_sequence") or "")),

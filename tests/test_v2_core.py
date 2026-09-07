@@ -14,7 +14,7 @@ from pri_general.interface import qualify_interface
 from pri_general.normalize import normalize_record
 from pri_general.pipeline import _candidate_rejection_reasons
 from pri_general.families import annotate_family_records, training_ready
-from pri_general.select import select_records
+from pri_general.select import collapse_mother_samples, select_records
 from pri_general.split import assign_splits, validate_split_isolation
 from pri_general.validate import validate_records
 
@@ -105,6 +105,28 @@ class V2CoreTests(unittest.TestCase):
             })
         selected, _ = select_records(records, target=2, caps={"rfam": 1})
         self.assertEqual(len(selected), 2)
+
+    def test_mother_sample_collapse_keeps_best_evidence(self) -> None:
+        records = [
+            {
+                "sequence_key": "same",
+                "sample_id": "site",
+                "evidence_type": "site_resolved_binding",
+            },
+            {
+                "sequence_key": "same",
+                "sample_id": "structure",
+                "evidence_type": "experimental_structure",
+            },
+            {
+                "sequence_key": "different",
+                "sample_id": "other",
+                "evidence_type": "direct_biochemical",
+            },
+        ]
+        collapsed, count = collapse_mother_samples(records)
+        self.assertEqual(count, 1)
+        self.assertEqual({row["sample_id"] for row in collapsed}, {"structure", "other"})
 
     def test_normalized_record_is_validatable(self) -> None:
         record = normalize_record({
