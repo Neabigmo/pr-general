@@ -1,43 +1,43 @@
 {
-  "candidate_rows": 139598,
+  "candidate_rows": 141480,
   "duplicate_rows_removed": 46012,
   "evidence_types": {
-    "direct_biochemical": 407,
+    "direct_biochemical": 436,
     "experimental_structure": 19318,
-    "physical_association": 44,
-    "site_resolved_binding": 119829
+    "physical_association": 86,
+    "site_resolved_binding": 121640
   },
   "family_assignments": {
     "assignment_files_present": 7,
-    "family_ready_rows": 11867,
-    "protein30_assignments": 3075,
-    "protein40_assignments": 3075,
-    "protein90_assignments": 3075,
+    "family_ready_rows": 12276,
+    "protein30_assignments": 4253,
+    "protein40_assignments": 4253,
+    "protein90_assignments": 4253,
     "rfam_assignments": 220,
     "rfam_sequence_assignments": 363,
     "rna80_assignments": 127976,
     "rna90_assignments": 127976,
-    "training_ready_rows": 139595
+    "training_ready_rows": 141135
   },
-  "family_ready_rows": 11867,
+  "family_ready_rows": 12276,
   "interface_qualified_rows": 4885,
-  "rejected_rows": 54119,
+  "rejected_rows": 54226,
   "rejection_reasons": {
     "invalid_rna_alphabet": 21,
-    "protein_length": 1547,
+    "protein_length": 1610,
     "rna_length": 52163,
     "site_window_too_long": 281,
-    "token_hard_max": 11995
+    "token_hard_max": 12102
   },
   "rejection_sources": {
     "npinter_bindingsite": 31657,
-    "npinter_main": 16,
+    "npinter_main": 123,
     "npinter_mirna": 4,
     "rcsb_pdb_candidates": 22442
   },
   "selection": {
-    "error": "training target unavailable: requested 100000, selected 42552",
-    "selected": 42552
+    "error": "training target unavailable: requested 100000, selected 43595",
+    "selected": 43595
   },
   "skipped_sources": {
     "boltz2": "external_execution",
@@ -185,7 +185,7 @@
   },
   "source_rows": {
     "npinter_bindingsite": 197052,
-    "npinter_main": 602,
+    "npinter_main": 2591,
     "npinter_mirna": 316,
     "rcsb_pdb_candidates": 41759
   },

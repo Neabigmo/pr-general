@@ -11,7 +11,7 @@ sources:
     resolved_path: data/cache/build/npinter_main_resolved.tsv
     source_url: http://bigdata.ibp.ac.cn/npinter5
     disposition: canonical_candidate_input_resolved_subset
-    note: Official v5 ZIP remains the source-of-record. The resolved path contains only rows with exact miRBase hairpin and UniProt protein IDs; unresolved records remain provenance-only.
+    note: Official v5 ZIP remains the source-of-record. The resolved path contains only rows with exact miRBase hairpin plus exact UniProt accession or one unique RefSeq CDS translation for an exact NM accession; unresolved records remain provenance-only.
   - id: npinter_bindingsite
     role: site_resolved_binding
     status: available
