@@ -46,17 +46,19 @@ def _cap_keys(record: dict) -> list[tuple[str, str]]:
         ("protein_exact", str(record.get("protein_sequence") or "")),
         ("protein30", str(record.get("protein30") or "")),
         ("rna_exact", str(record.get("rna_sequence") or "")),
-        ("rfam", str(record.get("rfam_family") or "unknown")),
         ("source", str(record.get("source_database") or "unknown")),
         ("species", str(record.get("organism") or "unknown")),
         ("rna_class", str(record.get("rna_class") or "unknown")),
     ]
+    rfam = str(record.get("rfam_family") or "").strip()
+    if rfam:
+        keys.append(("rfam", rfam))
     if record.get("site_mode") == "site_window":
         keys.append(("site_window", "all"))
     organism = str(record.get("organism") or "").lower()
     if "homo sapiens" in organism or "mus musculus" in organism:
         keys.append(("human_mouse", "human_mouse"))
-    if not record.get("rfam_family") or not record.get("protein30"):
+    if not record.get("rna_class"):
         keys.append(("unknown", "unknown"))
     if estimate_tokens(record) > 1200:
         keys.append(("expensive", "expensive"))

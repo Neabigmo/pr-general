@@ -13,7 +13,8 @@ from pri_general.evidence import infer_evidence_type
 from pri_general.interface import qualify_interface
 from pri_general.normalize import normalize_record
 from pri_general.pipeline import _candidate_rejection_reasons
-from pri_general.families import annotate_family_records
+from pri_general.families import annotate_family_records, training_ready
+from pri_general.select import select_records
 from pri_general.split import assign_splits, validate_split_isolation
 from pri_general.validate import validate_records
 
@@ -63,6 +64,47 @@ class V2CoreTests(unittest.TestCase):
         assign_splits(records, validation_fraction=0.2, test_fraction=0.2)
         validate_split_isolation(records)
         self.assertTrue({row["split"] for row in records} <= {"train", "validation", "test"})
+
+    def test_split_uses_rna80_when_rfam_is_missing(self) -> None:
+        records = []
+        for i in range(20):
+            records.append({
+                "sample_id": f"fallback{i}", "biological_pair_id": f"fallback_bp{i}",
+                "protein30": f"p{i}", "rna80": f"r{i}",
+                "evidence_type": "experimental_structure", "split": None,
+            })
+        assign_splits(records, validation_fraction=0.2, test_fraction=0.2)
+        validate_split_isolation(records)
+        self.assertTrue(all(training_ready(row) for row in records))
+
+    def test_split_keeps_connected_family_components_together(self) -> None:
+        records = [
+            {
+                "sample_id": "connected0", "biological_pair_id": "connected_bp0",
+                "protein30": "p0", "rna80": "r0", "rfam_family": "RF0",
+                "evidence_type": "experimental_structure", "split": None,
+            },
+            {
+                "sample_id": "connected1", "biological_pair_id": "connected_bp1",
+                "protein30": "p0", "rna80": "r1", "rfam_family": "RF1",
+                "evidence_type": "experimental_structure", "split": None,
+            },
+        ]
+        assign_splits(records, validation_fraction=0.5, test_fraction=0.0)
+        self.assertEqual(records[0]["split"], records[1]["split"])
+        validate_split_isolation(records)
+
+    def test_missing_rfam_does_not_consume_rfam_cap(self) -> None:
+        records = []
+        for i in range(2):
+            records.append({
+                "sample_id": f"no_rfam{i}", "protein_sequence": "ACDE" if i == 0 else "ACDF",
+                "protein30": f"p{i}", "rna_sequence": "ACGU" if i == 0 else "ACGA",
+                "source_database": "fixture", "rna_class": "other_ncrna",
+                "evidence_type": "direct_biochemical",
+            })
+        selected, _ = select_records(records, target=2, caps={"rfam": 1})
+        self.assertEqual(len(selected), 2)
 
     def test_normalized_record_is_validatable(self) -> None:
         record = normalize_record({
@@ -129,9 +171,14 @@ class V2CoreTests(unittest.TestCase):
                 (root / f"{field}_cluster.tsv").write_text(f"r_{rkey}\tr_{rkey}\n", encoding="utf-8")
             (root / "rna_rfam_by_id.tsv").write_text("RNA1\tRF00001\n", encoding="utf-8")
             stats = annotate_family_records([record], root)
+            sequence_record = dict(record)
+            sequence_record["rna_id"] = "RNA2"
+            (root / "rna_rfam_by_seq.tsv").write_text(f"r_{rkey}\tRF00002\n", encoding="utf-8")
+            annotate_family_records([sequence_record], root)
         self.assertTrue(record["family_ready"])
         self.assertEqual(record["rfam_family"], "RF00001")
         self.assertEqual(stats["family_ready_rows"], 1)
+        self.assertEqual(sequence_record["rfam_family"], "RF00002")
 
 
 if __name__ == "__main__":

@@ -9,20 +9,19 @@ from .config import load_config
 from .constants import PROTEIN_ALPHABET, RNA_ALPHABET
 from .constructs import validate_construct
 from .evidence import evidence_is_strict_experimental
-from .families import annotate_family_records
+from .families import annotate_family_records, training_ready
 from .ingest import load_records
 from .interface import quality_tier, qualify_interface
 from .io import write_json, write_jsonl
 from .release import write_checksums
 from .select import SelectionError, select_records
-from .split import assign_splits
+from .split import assign_splits, holdout_family_keys
 from .structure_qc import apply_structure_qc
 from .validate import validate_source_manifest
 
-# The official NPInter main table has IDs/evidence but no sequences. It is
-# recorded in provenance and resolved in a later annotation pass, not loaded
-# into the sequence candidate table prematurely.
-BUILD_SOURCE_IDS = ("npinter_bindingsite", "npinter_mirna", "rcsb_pdb_candidates")
+# NPInter main is loaded from its locally resolved, auditable subset; the raw
+# ZIP remains the source-of-record in the manifest.
+BUILD_SOURCE_IDS = ("npinter_main", "npinter_bindingsite", "npinter_mirna", "rcsb_pdb_candidates")
 
 
 def _deduplicate_records(rows: list[dict]) -> tuple[list[dict], int]:
@@ -67,6 +66,7 @@ def _source_inventory(manifest: dict) -> dict[str, dict]:
             "role": item.get("role"),
             "status": item.get("status"),
             "local_path": item.get("local_path"),
+            "resolved_path": item.get("resolved_path"),
             "disposition": item.get("disposition", "provenance_only"),
         }
         for item in manifest.get("sources", [])
@@ -111,7 +111,12 @@ def build(repo_root: str | Path, config_path: str | Path, release: str) -> dict:
         if source.get("status") != "available" or not path:
             skipped[source_id] = str(source.get("status"))
             continue
-        source_rows = load_records(root / path, source_id)
+        resolved_path = source.get("resolved_path")
+        input_path = root / (resolved_path or path)
+        if not input_path.exists():
+            skipped[source_id] = f"missing_resolved_input:{input_path}"
+            continue
+        source_rows = load_records(input_path, source_id)
         rows.extend(source_rows)
         source_counts[source_id] = len(source_rows)
     rows, duplicate_rows_removed = _deduplicate_records(rows)
@@ -129,17 +134,16 @@ def build(repo_root: str | Path, config_path: str | Path, release: str) -> dict:
             accepted_rows.append(row)
     rejection_sources = Counter(row["source_id"] for row in rejected_rows)
     rows = accepted_rows
-    skipped["npinter_main"] = "requires_sequence_resolution"
     skipped.update({
         source_id: source.get("disposition", "provenance_only")
         for source_id, source in sources.items()
-        if source_id not in BUILD_SOURCE_IDS and source_id != "npinter_main"
+        if source_id not in BUILD_SOURCE_IDS
     })
     family_stats = annotate_family_records(rows, cache_root / "family_work")
     candidate_path = cache_root / "candidates.jsonl"
     holdout_source = [
         row for row in rows
-        if evidence_is_strict_experimental(row) and row.get("interface_qualified") and row.get("family_ready")
+        if evidence_is_strict_experimental(row) and row.get("interface_qualified") and training_ready(row)
     ]
     assign_splits(
         holdout_source,
@@ -149,9 +153,19 @@ def build(repo_root: str | Path, config_path: str | Path, release: str) -> dict:
     holdout_pairs = {
         row["biological_pair_id"] for row in holdout_source if row.get("split") in {"validation", "test"}
     }
+    holdout_keys = {
+        key
+        for row in holdout_source
+        if row.get("split") in {"validation", "test"}
+        for key in holdout_family_keys(row)
+    }
     train_pool = [
         row for row in rows
-        if row.get("family_ready") and row["biological_pair_id"] not in holdout_pairs
+        if (
+            training_ready(row)
+            and row["biological_pair_id"] not in holdout_pairs
+            and not holdout_family_keys(row) & holdout_keys
+        )
     ]
     selected_train: list[dict] = []
     selection_error = None
@@ -179,8 +193,12 @@ def build(repo_root: str | Path, config_path: str | Path, release: str) -> dict:
         for item in source_manifest.get("sources", [])
         if item.get("status") not in {"available", "external_host_out_of_scope"}
     )
-    blockers.append("source_npinter_main_requires_sequence_resolution")
-    if family_stats["assignment_files_present"] < 6 or not family_stats["family_ready_rows"]:
+    npinter = sources.get("npinter_main", {})
+    if npinter.get("disposition") == "canonical_candidate_input_resolved_subset":
+        blockers.append("source_npinter_main_partial_sequence_resolution")
+    else:
+        blockers.append("source_npinter_main_requires_sequence_resolution")
+    if family_stats["assignment_files_present"] < 6 or not family_stats["training_ready_rows"]:
         blockers.append("family_assignments_required_before_selection")
     if selection_error:
         blockers.append(selection_error)

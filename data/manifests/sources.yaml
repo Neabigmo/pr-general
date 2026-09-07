@@ -8,9 +8,10 @@ sources:
     role: interaction_source
     status: available
     local_path: data/cache/sources/npinter_v5/interaction_NPInterv5.zip
+    resolved_path: data/cache/build/npinter_main_resolved.tsv
     source_url: http://bigdata.ibp.ac.cn/npinter5
-    disposition: provenance_only_sequence_resolution_pending
-    note: Official v5 download. It is a ZIP container with interaction_NPInterv5.txt; sequence resolution is still required before candidate import.
+    disposition: canonical_candidate_input_resolved_subset
+    note: Official v5 ZIP remains the source-of-record. The resolved path contains only rows with exact miRBase hairpin and UniProt protein IDs; unresolved records remain provenance-only.
   - id: npinter_bindingsite
     role: site_resolved_binding
     status: available

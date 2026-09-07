@@ -3,9 +3,8 @@
     "MSA_and_Boltz_execution_are_external_scope",
     "experimental_interface_metrics_incomplete_for_some_rows",
     "external_boltz_results_required_before_final_release",
-    "source_npinter_main_requires_sequence_resolution",
+    "source_npinter_main_partial_sequence_resolution",
     "source_postar3_status_endpoint_unverified",
-    "strict_experimental_holdout_unavailable",
     "training_target_unavailable"
   ],
   "candidate_path": "data/cache/build/candidates.jsonl",
