@@ -1,4 +1,6 @@
-# PRI-General：已有资源、快速补齐项与当前缺口
+# PRI-General：历史资源审计
+
+> 本文保留的是 v1 迁移时的历史审计，不是当前 v2 的状态真相。当前来源进入/排除理由以 `data/manifests/sources.yaml` 和 `docs/v2_workflow.md` 为准；当前工作流只在具备明确序列或结构映射时导入候选。
 
 ## 一、包内已经具备的内容
 

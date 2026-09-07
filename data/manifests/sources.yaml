@@ -113,7 +113,7 @@ sources:
     local_path: data/cache/sources/postar3
     source_url: http://postar.ncrnalab.org
     disposition: provenance_only_endpoint_unverified
-    note: No stable machine-readable public dump was confirmed during this pass; do not fabricate an import.
+    note: The web query endpoint responds, but no stable machine-readable bulk snapshot was confirmed during this pass; do not fabricate an import from ad hoc queries.
   - id: boltz2
     role: external_structure_prediction
     status: external_host_out_of_scope

@@ -13,5 +13,5 @@ The code intentionally stops at a draft release when an upstream contract is mis
 - RNAcentral current ID mapping and Rfam annotations were downloaded, gzip-verified, and used for local family annotation. Files over 1 GB remain local-only.
 - RNApedia is a verified 35.5 GB Zenodo benchmark archive and remains local-only; it is not mixed into training candidates.
 - RNAInter, IntAct, and ENCODE/RBNS are cataloged in the same manifest. Their current local materials do not provide a complete sequence-resolved canonical table, so they remain provenance/annotation inputs until that requirement is met.
-- POSTAR3 has a public web endpoint but no verified machine-readable dump was found in this pass.
+- POSTAR3's web query endpoint responds, but no verified machine-readable bulk dump was found in this pass; ad hoc query results are not imported as a bulk source.
 - Boltz-2/MSA are deliberately external to this project.
