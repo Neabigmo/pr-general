@@ -12,4 +12,4 @@ Migrated local sources:
 
 The old 2.26 GB audit CSV is local-only at `data/cache/sources/legacy_v1/general_stage_audit.csv`; it is not uploaded. Duplicate v1 reports, plots, and derived tables were not copied into v2. The v1 implementation remains recoverable from branch `legacy/v1` and tag `legacy-v1-2026-09-05`.
 
-The official NPInter main download is retained as `interaction_NPInterv5.zip`; its inner table is an evidence/ID source and still needs sequence resolution before it can enter the canonical candidate table.
+The official NPInter main download is retained as `interaction_NPInterv5.zip`; the local exact-resolution subset is at `data/cache/build/npinter_main_resolved.tsv` and is the only portion admitted to the canonical candidate table. Unresolved identifiers remain provenance-only.
