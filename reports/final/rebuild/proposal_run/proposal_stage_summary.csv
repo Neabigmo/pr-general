@@ -1,0 +1,8 @@
+﻿stage,rows,definition
+raw_records,803773,all four current sequence tables
+exact_protein_mapping,795856,protein sequence and identifier both present
+exact_rna_mapping,577712,RNA sequence and identifier both present
+exact_double_mapping,573198,both exact mapping booleans true
+alphabet_and_length_qc,214695,proposal sequence alphabet and length thresholds
+pdb_contact_and_structure_qc,214695,plus PDB contact/experimental-record checks
+unique_exact_sequence_pairs,161747,one representative; evidence records retained separately

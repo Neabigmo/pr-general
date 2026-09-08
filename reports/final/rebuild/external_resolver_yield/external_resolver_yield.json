@@ -1,0 +1,50 @@
+{
+  "sample_rows_per_archive": 100000,
+  "local_protein_identifier_keys": 29682,
+  "local_rna_identifier_keys": 64297,
+  "rnainter": [
+    {
+      "archive": "Download_data_RH.tar.gz",
+      "sample_rows": 100000,
+      "raw_rows": 100000,
+      "rna_protein_rows": 0,
+      "experimental_rows": 0,
+      "protein_id_present_rows": 0,
+      "rna_id_present_rows": 0,
+      "protein_sequence_resolved_rows": 0,
+      "rna_sequence_resolved_rows": 0,
+      "double_sequence_rows": 0,
+      "unique_exact_identifier_pairs": 0,
+      "note": "exact pair count is a lower-bound resolver test against local candidate-table ID maps"
+    },
+    {
+      "archive": "Download_data_RP.tar.gz",
+      "sample_rows": 100000,
+      "raw_rows": 100000,
+      "rna_protein_rows": 88129,
+      "experimental_rows": 28315,
+      "protein_id_present_rows": 88128,
+      "rna_id_present_rows": 88126,
+      "protein_sequence_resolved_rows": 0,
+      "rna_sequence_resolved_rows": 0,
+      "double_sequence_rows": 0,
+      "unique_exact_identifier_pairs": 0,
+      "note": "exact pair count is a lower-bound resolver test against local candidate-table ID maps"
+    }
+  ],
+  "intact": {
+    "archive": "intact.zip",
+    "sample_rows": 100000,
+    "raw_rows": 100000,
+    "protein_rna_rows": 147,
+    "direct_nonphysical_rows": 52,
+    "protein_id_present_rows": 52,
+    "rna_id_present_rows": 52,
+    "protein_sequence_resolved_rows": 2,
+    "rna_sequence_resolved_rows": 0,
+    "double_sequence_rows": 0,
+    "unique_exact_identifier_pairs": 0,
+    "note": "exact pair count is a lower-bound resolver test against local candidate-table ID maps"
+  },
+  "interpretation": "A row enters a resolver yield only when the filtered experimental relation has unique local protein and RNA sequence mappings; this pass does not use gene names or create sequence windows."
+}

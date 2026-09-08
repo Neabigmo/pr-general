@@ -1,0 +1,10 @@
+﻿metric,observed,observed_rows,limit,status,note
+source:NPInter,0.9666639875855503,156355.0,0.3,OBSERVE,one source upper bound; temporarily not a hard gate
+source:PDB,0.03333601241444973,5392.0,0.3,OBSERVE,one source upper bound; temporarily not a hard gate
+exact_protein_pair_degree,25700.0,97.0,250,FAIL,maximum exact-sequence pairs per protein
+clip_site_window_fraction,0.9664166877901909,156315.0,0.35,FAIL,CLIP/site-window upper bound
+single_rna_class_fraction,0.9647350491817468,156043.0,0.3,FAIL,lncrna
+single_species_fraction,0.7547218804676439,122074.0,0.55,FAIL,Homo sapiens
+human_mouse_fraction,0.9666392576060143,156351.0,0.75,FAIL,combined human and mouse
+source_cap_pool_upper_bound,17973.0,17973.0,100000,OBSERVE,diagnostic only until RNAInter/IntAct/eCLIP yield is known
+strict_family_split,,,required,BLOCKED,current candidate tables do not contain Protein40/RNA80/Rfam assignments

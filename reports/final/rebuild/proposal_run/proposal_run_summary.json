@@ -1,0 +1,50 @@
+{
+  "run_type": "four_source_proposal_audit",
+  "current_sequence_ready_sources": [
+    "PDB",
+    "NPInter"
+  ],
+  "held_sources": [
+    "RNAInter",
+    "IntAct",
+    "ENCODE/RBNS",
+    "ENCODE/eCLIP (site asset pending sequence mapping)"
+  ],
+  "raw_records": 803773,
+  "eligible_evidence_records": 214695,
+  "unique_exact_pairs": 161747,
+  "unique_proteins": 2946,
+  "unique_rnas": 122759,
+  "source_counts": {
+    "NPInter": 156355,
+    "PDB": 5392
+  },
+  "evidence_record_count_sum": 214695,
+  "source_funnel": {
+    "npinter_bindingsite": {
+      "raw_rows": 197052,
+      "double_exact_rows": 196748,
+      "eligible_evidence_rows": 155739,
+      "unique_eligible_pairs": 114963
+    },
+    "npinter_main": {
+      "raw_rows": 564646,
+      "double_exact_rows": 334378,
+      "eligible_evidence_rows": 41244,
+      "unique_eligible_pairs": 41080
+    },
+    "npinter_mirna": {
+      "raw_rows": 316,
+      "double_exact_rows": 313,
+      "eligible_evidence_rows": 312,
+      "unique_eligible_pairs": 312
+    },
+    "rcsb_pdb": {
+      "raw_rows": 41759,
+      "double_exact_rows": 41759,
+      "eligible_evidence_rows": 17400,
+      "unique_eligible_pairs": 5392
+    }
+  },
+  "proposal_100k_ready": false
+}

@@ -1,0 +1,4 @@
+﻿source,archive,sample_rows,raw_rows,rna_protein_rows,experimental_rows,protein_id_present_rows,rna_id_present_rows,protein_sequence_resolved_rows,rna_sequence_resolved_rows,double_sequence_rows,unique_exact_identifier_pairs,note,protein_rna_rows,direct_nonphysical_rows
+RNAInter,Download_data_RH.tar.gz,100000,100000,0.0,0.0,0,0,0,0,0,0,exact pair count is a lower-bound resolver test against local candidate-table ID maps,,
+RNAInter,Download_data_RP.tar.gz,100000,100000,88129.0,28315.0,88128,88126,0,0,0,0,exact pair count is a lower-bound resolver test against local candidate-table ID maps,,
+IntAct,intact.zip,100000,100000,,,52,52,2,0,0,0,exact pair count is a lower-bound resolver test against local candidate-table ID maps,147.0,52.0

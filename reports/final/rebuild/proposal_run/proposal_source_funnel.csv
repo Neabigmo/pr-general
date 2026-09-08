@@ -1,0 +1,5 @@
+﻿input_source_id,raw_rows,protein_exact_rows,rna_exact_rows,double_exact_rows,protein_alphabet_pass_rows,rna_alphabet_pass_rows,protein_length_pass_rows,rna_length_pass_rows,alphabet_length_pass_rows,eligible_evidence_rows,unique_eligible_pairs
+npinter_bindingsite,197052,196748,197052,196748,196582,196748,196033,156500,155739,155739,114963
+npinter_main,564646,557036,338585,334378,331796,334378,332298,41634,41244,41244,41080
+npinter_mirna,316,313,316,313,313,313,312,313,312,312,312
+rcsb_pdb,41759,41759,41759,41759,41569,41737,41072,17896,17400,17400,5392
